@@ -1,24 +1,9 @@
-
 public class User {
 	
 	private static String[] ID = {"D1234567", "D4567891"};
 	private static String[] Password = {"123", "000"};
 	
-	private static String workplace;
-	
-	public User(int kind){
-		if(kind == 1){
-			workplace = "HighSchool";
-		}else if(kind == 2){
-			workplace = "CramSchool";
-		}
-	}
-	
-	public String Getter(){
-		return this.workplace;
-	}
-	
-	public static boolean login(String account, String password, int which){
+	public static boolean login(String account, String password){
 		boolean found = false;
 		
 		int i;
@@ -33,7 +18,6 @@ public class User {
 			found = false;
 			if(Password[i].equals(password)){
 				found = true;
-				which = i+1;
 			}
 		}
 		

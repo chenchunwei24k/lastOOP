@@ -15,11 +15,10 @@ public class main {
 			System.out.print("Input Password : ");
 			String password = scanner.next();
 			
-			flag = User.login(account, password, kind);
+			flag = User.login(account, password);
 			
 			if(flag == true){
 				
-				User user = new User(kind);
 				
 				while(true){
 					System.out.println("Teacher Menu:");
