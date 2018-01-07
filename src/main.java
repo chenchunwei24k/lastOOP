@@ -9,7 +9,7 @@ public class main {
 		
 		while(true){
 			boolean flag = false, logout = false;
-			int kind = 0;
+			System.out.println();
 			System.out.print("Input Account : ");
 			String account = scanner.next();
 			System.out.print("Input Password : ");
@@ -19,32 +19,41 @@ public class main {
 			
 			if(flag == true){
 				
+				Course Math = new Course();
+				GradeManager MathManager = new GradeManager();
+				Course Chinese = new Course();
+				GradeManager ChineseManager = new GradeManager();
+				Course English = new Course();
+				GradeManager EnglishManager = new GradeManager();
 				
 				while(true){
+					String num;
+					System.out.println();
 					System.out.println("Teacher Menu:");
-					System.out.println("1.Add");
-					System.out.println("2.Delete");
-					System.out.println("3.Rewrite");
-					System.out.println("4.Search");
-					System.out.println("5.Getavg");
-					System.out.println("6.Logout");
+					System.out.println("Please select one Course system to use ");
+					System.out.println("1.Math");
+					System.out.println("2.Chinese");
+					System.out.println("3.English");
+					System.out.println("4.Logout");
 					System.out.print("Input choice : ");
 					
-					int num = scanner.nextInt();
+					num = scanner.next();
 					
 					switch(num){
-						case 1:
+						case "1":
+							Math.menu(MathManager);
 							break;
-						case 2:
+						case "2":
+							Chinese.menu(ChineseManager);
 							break;
-						case 3:
+						case "3":
+							English.menu(EnglishManager);
 							break;
-						case 4:
-							break;
-						case 5:
-							break;
-						case 6:
+						case "4":
 							logout = true;
+							break;
+						default:
+							System.out.println("Input Error!");
 					}
 					
 					if(logout == true){
