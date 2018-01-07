@@ -21,10 +21,15 @@ public class main {
 				
 				Course Math = new Course();
 				GradeManager MathManager = new GradeManager();
+				Student Mathstud = new Student();
+				
 				Course Chinese = new Course();
 				GradeManager ChineseManager = new GradeManager();
+				Student Chinesestud = new Student();
+				
 				Course English = new Course();
 				GradeManager EnglishManager = new GradeManager();
+				Student Englishstud = new Student();
 				
 				while(true){
 					String num;
@@ -34,22 +39,60 @@ public class main {
 					System.out.println("1.Math");
 					System.out.println("2.Chinese");
 					System.out.println("3.English");
-					System.out.println("4.Logout");
+					System.out.println("4.AVG of three Course");
+					System.out.println("5.Logout");
 					System.out.print("Input choice : ");
 					
 					num = scanner.next();
 					
 					switch(num){
 						case "1":
-							Math.menu(MathManager);
+							Math.menu(MathManager,Mathstud);
 							break;
 						case "2":
-							Chinese.menu(ChineseManager);
+							Chinese.menu(ChineseManager,Chinesestud);
 							break;
 						case "3":
-							English.menu(EnglishManager);
+							English.menu(EnglishManager,Englishstud);
 							break;
 						case "4":
+							int i=0;
+							double Etotal = 0.0, Qtotal = 0.0, Eavg, Qavg;
+							String studnum;
+							boolean found = false;
+							
+							System.out.println();
+							System.out.print("Please Input Student ID : ");
+							studnum = scanner.next();
+							
+							for(i=0; i<4; i++){
+								if(Mathstud.ID[i].equals(studnum)){
+									found = true;
+									break;
+								}
+							}
+							
+							
+							if(found == false){
+								System.out.println("This Student doesn't Exist!");
+							}else{
+								Etotal = Etotal + (double)Mathstud.exam.Grade[i]*3;
+								Etotal = Etotal + (double)Chinesestud.exam.Grade[i];
+								Etotal = Etotal + (double)Englishstud.exam.Grade[i]*2;
+								Eavg = Etotal/3.0;
+								
+								Qtotal = Qtotal + (double)Mathstud.quiz.Grade[i]*3;
+								Qtotal = Qtotal + (double)Chinesestud.quiz.Grade[i];
+								Qtotal = Qtotal + (double)Englishstud.quiz.Grade[i]*2;
+								Qavg = Qtotal/3.0;
+								
+								System.out.println("Student " + Mathstud.Name[i] + "'s Exam Average Grade is " + Qavg);
+								System.out.println("Student " + Mathstud.Name[i] + "'s Quiz Average Grade is " + Eavg);
+								
+							}
+							
+							break;
+						case "5":
 							logout = true;
 							break;
 						default:

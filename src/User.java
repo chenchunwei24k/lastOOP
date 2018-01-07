@@ -10,14 +10,14 @@ public class User {
 		int i;
 		
 		for(i=0; i<ID.length; i++){
-			if(ID[i].equals(account)){
+			if(ID[i].equalsIgnoreCase(account)){
 				found = true;
 				break;
 			}
 		}
 		if(found){
 			found = false;
-			if(Password[i].equals(password)){
+			if(Password[i].equalsIgnoreCase(password)){
 				found = true;
 			}
 		}

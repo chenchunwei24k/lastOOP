@@ -6,7 +6,7 @@ public class Course {
 	
 	Scanner scanner = new Scanner(System.in);
 	
-	public void menu(GradeManager Manager){
+	public void menu(GradeManager Manager, Student stud){
 		while(true){
 			System.out.println();
 			System.out.println("Manager Menu:");
@@ -22,19 +22,19 @@ public class Course {
 			
 			switch(num){
 				case "1":
-					Manager.add();
+					Manager.add(stud);
 					break;
 				case "2":
-					Manager.delete();
+					Manager.delete(stud);
 					break;
 				case "3":
-					Manager.rewrite();
+					Manager.rewrite(stud);
 					break;
 				case "4":
-					Manager.search();
+					Manager.search(stud);
 					break;
 				case "5":
-					Manager.getavg();
+					Manager.getavg(stud);
 					break;
 				case "6":
 					Return = true;

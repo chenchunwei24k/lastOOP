@@ -1,13 +1,11 @@
 import java.util.Scanner;
-//stu_score = {ID,Sname,Ccode,Cname,Score}
+
 public class GradeManager {
-	
-	Student stud = new Student();
 	
 	Scanner scanner = new Scanner(System.in);
 	int count = 0,i;
 	
-	public void add(){
+	public void add(Student stud){
 		String name;
 		int Enum, Qnum;
 		int i, choice;
@@ -26,7 +24,7 @@ public class GradeManager {
 		choice = scanner.nextInt();
 		
 		for(i=0; i<4;i++) {
-			if(stud.ID[i].equals(name)) {
+			if(stud.ID[i].equalsIgnoreCase(name)) {
 				found = true;
 				break;
 			}
@@ -37,26 +35,39 @@ public class GradeManager {
 		}else {
 			
 			if(choice == 1){
+				
+				if(stud.exam.Grade[i]!= -1)
+					System.out.println("This Student already have exam grade in this subject!");
+				else{
 				System.out.print("Please Input Student Exam Grade : ");
 				Enum = scanner.nextInt();
-				
 				stud.exam.Grade[i] = Enum;
-				
+				}
 			}else if(choice == 2){
-				System.out.print("Please Input Student Quiz Grade : ");
-				Qnum = scanner.nextInt();
 				
-				stud.quiz.Grade[i] = Qnum;
-				
+				if(stud.quiz.Grade[i]!= -1)
+					System.out.println("This Student already have quiz grade in this subject!");
+				else{
+					System.out.print("Please Input Student Quiz Grade : ");
+					Qnum = scanner.nextInt();
+					stud.quiz.Grade[i] = Qnum;
+				}
 			}else if(choice == 3){
-				System.out.print("Please Input Student Exam Grade : ");
-				Enum = scanner.nextInt();
-				System.out.print("Please Input Student Quiz Grade : ");
-				Qnum = scanner.nextInt();
 				
-				stud.exam.Grade[i] = Enum;
-				stud.quiz.Grade[i] = Qnum;
-				
+				if(stud.exam.Grade[i]!= -1)
+					System.out.println("This Student already have exam grade in this subject!");
+					else{
+						System.out.print("Please Input Student Exam Grade : ");
+						Enum = scanner.nextInt();
+						stud.exam.Grade[i] = Enum;
+					}
+				if(stud.quiz.Grade[i]!= -1)
+						System.out.println("This Student already have quiz grade in this subject!");
+					else{
+						System.out.print("Please Input Student Quiz Grade : ");
+						Qnum = scanner.nextInt();
+						stud.quiz.Grade[i] = Qnum;
+					}
 			}else{
 				System.out.println("Input Error!");
 			}
@@ -65,7 +76,7 @@ public class GradeManager {
 		
 	}
 
-	public void delete(){
+	public void delete(Student stud){
 		boolean found = false;
 		String name;
 		int i, choice;
@@ -82,7 +93,7 @@ public class GradeManager {
 		choice = scanner.nextInt();
 		
 		for(i=0; i<4;i++) {
-			if(stud.ID[i].equals(name)) {
+			if(stud.ID[i].equalsIgnoreCase(name)) {
 				found = true;
 				break;
 			}
@@ -92,12 +103,24 @@ public class GradeManager {
 			System.out.println("This Student doesn't Exist!");
 		}else {
 			if(choice == 1){
-				stud.exam.Grade[i] = -1;
+				if(stud.exam.Grade[i]== -1)
+					System.out.println("This Student don't have exam grade in this subject!");
+					else
+						stud.exam.Grade[i] = -1;
 			}else if(choice == 2){
-				stud.quiz.Grade[i] = -1;
+				if(stud.quiz.Grade[i]== -1)
+					System.out.println("This Student don't have exam grade in this subject!");
+					else
+						stud.quiz.Grade[i] = -1;
 			}else if(choice == 3){
-				stud.exam.Grade[i] = -1;
-				stud.quiz.Grade[i] = -1;
+				if(stud.exam.Grade[i]== -1)
+					System.out.println("This Student don't have exam grade in this subject!");
+					else
+						stud.exam.Grade[i] = -1;
+				if(stud.quiz.Grade[i]== -1)
+					System.out.println("This Student don't have exam grade in this subject!");
+					else
+						stud.quiz.Grade[i] = -1;
 			}else{
 				System.out.println("Input Error!");
 			}
@@ -105,7 +128,7 @@ public class GradeManager {
 		
 	}
 	
-	public void rewrite(){
+	public void rewrite(Student stud){
 		boolean found = false;
 		int i, Enum, Qnum, choice;
 		String name;
@@ -113,7 +136,6 @@ public class GradeManager {
 		System.out.println();
 		System.out.print("Please Input Student ID : ");
 		name = scanner.next();
-		System.out.print("Please Rewrite Student's Grade : ");
 		System.out.println("Choose selection : ");
 		System.out.println("1.Rewrite Exam ");
 		System.out.println("2.Rewrite Qxam  ");
@@ -122,7 +144,7 @@ public class GradeManager {
 		choice = scanner.nextInt();
 		
 		for(i=0; i<4;i++) {
-			if(stud.ID[i].equals(name)) {
+			if(stud.ID[i].equalsIgnoreCase(name)) {
 				found = true;
 				break;
 			}
@@ -132,21 +154,38 @@ public class GradeManager {
 			System.out.println("This Student doesn't Exist!");
 		}else {
 			if(choice == 1){
-				System.out.print("Input Rewrite Exam Grade : ");
-				Enum = scanner.nextInt();
-				stud.exam.Grade[i] = Enum;
+				if(stud.exam.Grade[i]== -1)
+					System.out.println("This Student dont't have exam grade in this subject!");
+				else{
+					System.out.print("Input Rewrite Exam Grade : ");
+					Enum = scanner.nextInt();
+					stud.exam.Grade[i] = Enum;
+				}
 			}else if(choice == 2){
-				System.out.print("Input Rewrite Quiz Grade : ");
-				Qnum = scanner.nextInt();
-				stud.quiz.Grade[i] = Qnum;
-			}else if(choice == 3){
-				System.out.print("Input Rewrite Exam Grade : ");
-				Enum = scanner.nextInt();
-				System.out.print("Input Rewrite Quiz Grade : ");
-				Qnum = scanner.nextInt();
 				
-				stud.exam.Grade[i] = Enum;
-				stud.exam.Grade[i] = Qnum;
+				if(stud.quiz.Grade[i]== -1)
+					System.out.println("This Student dont't have quiz grade in this subject!");
+				else{
+				System.out.print("Input Rewrite Quiz Grade : ");
+				Qnum = scanner.nextInt();	
+				stud.quiz.Grade[i] = Qnum;
+				}
+			}else if(choice == 3){
+				
+				if(stud.exam.Grade[i]== -1)
+					System.out.println("This Student dont't have exam grade in this subject!");
+					else{
+						System.out.print("Input Rewrite Exam Grade : ");
+						Enum = scanner.nextInt();
+						stud.exam.Grade[i] = Enum;
+					}
+				if(stud.quiz.Grade[i]== -1)
+						System.out.println("This Student dont't have quiz grade in this subject!");
+					else{
+						System.out.print("Input Rewrite Quiz Grade : ");
+						Qnum = scanner.nextInt();
+						stud.quiz.Grade[i] = Qnum;
+					}
 			}else{
 				System.out.println("Input Error!");
 			}
@@ -154,7 +193,7 @@ public class GradeManager {
 		
 	}
 	
-	public void search(){
+	public void search(Student stud){
 		boolean found = false;
 		int i,j;
 		String name;
@@ -164,7 +203,7 @@ public class GradeManager {
 		name = scanner.next();
 		
 		for(i=0; i<4; i++){
-			if(stud.ID[i].equals(name)){
+			if(stud.ID[i].equalsIgnoreCase(name)){
 				found = true;
 				break;
 			}
@@ -180,7 +219,7 @@ public class GradeManager {
 		
 	}
 	
-	public void getavg(){
+	public void getavg(Student stud){
 		int Etotal=0, Qtotal=0;
 		double Ecount = 0.0, Qcount = 0.0, E, Q;
 		
